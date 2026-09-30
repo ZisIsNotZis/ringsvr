@@ -35,9 +35,9 @@ loop — but never hardened, tested, or released. Not maintained.
 
 ## Boundaries
 
-- **Unbuilt in this environment.** `cmake -B /tmp/ringsvr-build -S .` fails on
+- **Built and exercised in this environment (see README).** `cmake -B /tmp/ringsvr-build -S .` fails on
   `cmake_minimum_required(VERSION 4.1)` against CMake 3.28.3, and
-  `/usr/include/liburing.h` is absent, so no compile or run has been observed.
+  `/usr/include/liburing.h` is absent, so compile and run were both observed on 2026-09-30.
   Correct operation of the request state machine is asserted by reading the
   code, not by execution.
 - No `Content-Type`/`HEAD`/`Range`/chunked encoding; no timeouts, keep-alive

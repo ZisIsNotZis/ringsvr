@@ -113,11 +113,13 @@ CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
 -- Configuring incomplete, errors occurred!
 ```
 
-So: **configuration was attempted and failed, and the code was not compiled or
-run in this environment.** Two independent blockers: the too-high
-`cmake_minimum_required`, and the missing `liburing`. No successful build has
-been observed; the run instructions above are derived from reading `main.c`,
-not from a verified execution.
+**As first copied, configuration failed** on the too-high
+`cmake_minimum_required(VERSION 4.1)` (this machine has CMake 3.28) and on the
+absent system `liburing`. Both were then resolved — the minimum was lowered to
+3.16, an optional `-DLIBURING_ROOT` hint was added, and liburing 2.5 was
+extracted from the distro package into a local prefix — after which the server
+**was compiled, run and exercised end-to-end** (see "Verified build & run"
+below). `main.c` itself is byte-identical to the archive.
 
 ## Status
 
