@@ -1,2 +1,5 @@
 # CMake build output
 build/
+
+# Local agent state
+.pi/

@@ -20,15 +20,14 @@ The project is plain CMake plus `liburing`. The intended flow is:
 cmake -B build && cmake --build build
 ```
 
-That reproduces the original workflow, but read this before blaming the code:
-
-* `CMakeLists.txt` declares `cmake_minimum_required(VERSION 4.1)`, which is
-  stricter than anything this project needs. On a machine with CMake 3.x,
-  configuration stops immediately (see "Verification" below). Lowering it to
-  `3.16` is a one-line change and is very likely correct.
-* `liburing` **headers and library must be installed** (`liburing-dev` on
-  Debian/Ubuntu). They are not vendored, and `CMakeLists.txt` neither finds nor
-  checks for them — it just does `target_link_libraries(ringsvr PRIVATE uring)`.
+The current `CMakeLists.txt` requires CMake 3.16 or later. The archived initial
+build failure on CMake 3.x described under "Verification" was fixed by lowering
+the minimum from 4.1 to 3.16. `liburing` headers and library must be installed
+(`liburing-dev` on Debian/Ubuntu). They are not vendored, and `CMakeLists.txt`
+links `uring` directly unless `LIBURING_ROOT` points to a local prefix.
+In this checkout, `cmake -S . -B build` configured with CMake 3.28.3,
+but `cmake --build build` failed because `liburing.h` is not installed;
+the server was not run again for this housekeeping pass.
 
 ## Run
 
@@ -81,7 +80,7 @@ Implemented:
 
 Not implemented (deliberately or otherwise):
 
-* **No test suite, no CI, no build config beyond the six-line CMake file.**
+* **No test suite or CI; only a small CMake build configuration.**
 * No `Content-Type`, no `Date`/`Server` headers, no `HEAD`, no `Range`
   requests, no chunked transfer encoding, no POST form parsing (body is
   written raw to the named file).
@@ -94,7 +93,6 @@ Not implemented (deliberately or otherwise):
 * Logging is debug logging: every completion prints a line to stdout, and the
   `DBG` macro at the top of `main.c` is currently **defined**, so the server is
   chatty.
-* No licensing, no docs beyond this file.
 
 ## Verification
 
@@ -129,9 +127,7 @@ promises. If you need a real static file server, use one.
 
 ## License
 
-**None.** There is no `LICENSE` file and no license header in any source file.
-Absent an explicit license, default copyright applies and no rights are
-granted. Do not redistribute or reuse until the author adds a license.
+See [`LICENSE`](LICENSE) (GNU Affero General Public License version 3).
 
 ## Verified build & run (2026-09-30)
 
