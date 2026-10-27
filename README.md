@@ -65,8 +65,8 @@ paths relative to its working directory. The leading `/` of the URL path is drop
 - **SQPOLL event loop** with `sq_thread_idle = 10` ms, a 1024-entry ring, and 256
   pre-allocated connection slots.
 - **Static limits with a clear failure mode**: a missing file returns `404`; a path
-  containing `..` is rejected; a header larger than the 512-byte buffer closes the
-  connection; unsupported methods are dropped.
+  containing `..` is rejected, and a header larger than the 512-byte buffer or a method
+  other than `GET`/`POST` closes the connection.
 - **Persistent connections**: after a response, the same socket is re-armed for the next
   request.
 
