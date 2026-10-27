@@ -31,8 +31,8 @@ loop — but never hardened, tested, or released. Not maintained.
   - Safety: `strstr(path, "..")` traversal guard; `404` on open failure.
 - `CMakeLists.txt` — 6 lines; `add_executable(ringsvr main.c)` +
   `target_link_libraries(ringsvr PRIVATE uring)`.
-- Repository surface: `README.md`, `README.zh-CN.md`, `assets/logo.svg`, and this
-  status note. No tests, no CI, no lockfile.
+- Repository surface: `README.md`, `README.zh-CN.md`, `assets/logo.svg`,
+  `CONTRIBUTING.md`, and this status note. No tests, no CI, no lockfile.
 
 ## Boundaries
 

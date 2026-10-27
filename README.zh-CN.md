@@ -93,6 +93,7 @@ struct {
 | `CMakeLists.txt` | 链接 `liburing` 的最小 C11 构建配置。 |
 | `assets/logo.svg` | README 使用的项目标志。 |
 | `docs/project-status.md` | 项目范围、验证记录和已知限制。 |
+| `CONTRIBUTING.md` | 贡献范围、手工构建/验证流程和 PR 要求。 |
 
 ## 如何开发
 
@@ -118,7 +119,7 @@ cmake --build build
 
 欢迎提交 issue 和 pull request。请保持改动聚焦，保留服务器单文件的风格，并在提交中写明测试所用的内核、编译器和 liburing 版本。涉及行为变化时，请附上请求和实际观察到的响应。
 
-这是归档的研究代码，因此大型重写比小而清楚的修复或实验更难被接受。
+这是归档的研究代码，因此大型重写比小而清楚的修复或实验更难被接受。具体细节见 [`CONTRIBUTING.md`](CONTRIBUTING.md)：哪些改动在范围内、手工构建与验证的流程，以及 PR 里该写什么。
 
 ## 路线图
 

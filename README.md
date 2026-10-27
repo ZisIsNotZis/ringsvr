@@ -117,6 +117,7 @@ is the program counter.
 | `CMakeLists.txt` | A minimal C11 build that links `liburing`. |
 | `assets/logo.svg` | Project logo used by the README. |
 | `docs/project-status.md` | Notes on scope, evidence, and known limitations. |
+| `CONTRIBUTING.md` | Scope, the manual build/verify loop, and PR expectations. |
 
 ## How to develop
 
@@ -150,7 +151,8 @@ spirit of the server, and include the kernel, compiler, and liburing version you
 with. For behavior changes, show the request and the observed response.
 
 This is archived research code, so large rewrites are less likely to land than small,
-well-explained fixes or experiments.
+well-explained fixes or experiments. [`CONTRIBUTING.md`](CONTRIBUTING.md) has the details:
+what is in scope, the manual build-and-verify loop, and what to put in a PR.
 
 ## Roadmap
 
