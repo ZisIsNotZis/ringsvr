@@ -31,22 +31,23 @@ loop — but never hardened, tested, or released. Not maintained.
   - Safety: `strstr(path, "..")` traversal guard; `404` on open failure.
 - `CMakeLists.txt` — 6 lines; `add_executable(ringsvr main.c)` +
   `target_link_libraries(ringsvr PRIVATE uring)`.
-- No other files: no tests, no CI, no lockfile, no assets.
+- Repository surface: `README.md`, `README.zh-CN.md`, `assets/logo.svg`, and this
+  status note. No tests, no CI, no lockfile.
 
 ## Boundaries
 
-- **Built and exercised in this environment (see README).** `cmake -B /tmp/ringsvr-build -S .` fails on
-  `cmake_minimum_required(VERSION 4.1)` against CMake 3.28.3, and
-  `/usr/include/liburing.h` is absent, so compile and run were both observed on 2026-09-30.
-  Correct operation of the request state machine is asserted by reading the
-  code, not by execution.
+- **Built and exercised in this environment on 2026-09-30 (see README).** The
+  first configure failed on `cmake_minimum_required(VERSION 4.1)` against CMake
+  3.28.3 and on the absent system `/usr/include/liburing.h`. After lowering the
+  minimum to 3.16 and extracting liburing 2.5 to a local prefix, the server was
+  compiled and run end-to-end. `main.c` is unchanged.
 - No `Content-Type`/`HEAD`/`Range`/chunked encoding; no timeouts, keep-alive
   negotiation, graceful shutdown, or `MSG_ZEROCOPY` error-queue handling.
 - 512-byte fixed request buffer; oversized headers close the connection.
 - Serves paths relative to the process CWD (leading `/` stripped); no document
   root, no auth, no TLS.
-- `Status: archive/research`. No `LICENSE` file and no license header: no
-  rights are granted by default.
+- `Status: archive/research`. Licensed under AGPL-3.0 (see `LICENSE`); there are
+  no per-file license headers.
 
 ## Verified build (2026-09-30)
 
