@@ -1,5 +1,16 @@
-# CMake build output
+# Build output
 build/
+dist/
 
-# Local agent state
+# Local tooling and agent state
 .pi/
+node_modules/
+__pycache__/
+*.py[cod]
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
